@@ -47,14 +47,23 @@ public class Chess {
 
         //print board
         printBoard(board);
-        makeMove(board, 1, 1, 3, 1);
-        printBoard(board);
+        
+        //game loop
+        while(true){
+            //player 1 turn
+            System.out.println("Player 1 turn");
+            //get input
+            selectPiece(board);
+            // end turn
+            printBoard(board);
+
+        }
 
     }
     public static void printBoard(Piece[][] board){
         //print the name of piece on each square of board
-        System.out.println("  0 \t1 \t2 \t3 \t4 \t5 \t6 \t7");
-        for(int i = 0; i < 8; i++){
+        System.out.println("  a0 \tb1 \tc2 \td3 \te4 \tf5 \tg6 \th7");
+        for(int i = 7; i >= 0; i--){
             System.out.print(i + " ");
             for(int j = 0; j < 8; j++){
                 if(board[i][j] == null){
@@ -74,6 +83,39 @@ public class Chess {
             board[x][y] = null;
         }
         
+    }
+
+    public static void selectPiece(Piece[][] board){
+        // Get x,y as input from user
+        int x,y;
+        Scanner piece_input = new Scanner(System.in);
+        System.out.println("Select a piece to move");
+        System.out.println("Enter x coordinate");
+        x = piece_input.nextInt();
+        System.out.println("Enter y coordinate");
+        y = piece_input.nextInt();
+        // select piece at x,y
+        Piece selectedPiece = board[x][y];
+        if(selectedPiece != null){
+            System.out.println("You selected " + selectedPiece.name);
+            selectDestination(board, x, y);
+        }else{
+            System.out.println("You selected an empty square");
+            return;
+        }
+    }
+
+    public static void selectDestination(Piece[][] board, int x, int y){
+        // Get x,y as input from user
+        int new_x,new_y;
+        Scanner piece_input = new Scanner(System.in);
+        System.out.println("Select a destination");
+        System.out.println("Enter x coordinate");
+        new_x = piece_input.nextInt();
+        System.out.println("Enter y coordinate");
+        new_y = piece_input.nextInt();
+        // move piece from x,y to new_x,new_y
+        makeMove(board, x, y, new_x, new_y);
     }
 
 }

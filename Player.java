@@ -17,6 +17,7 @@ public class Player {
     Piece pawn7;
     Piece pawn8;
 
+    // init players
     public Player(String color){
         this.colour = color;
         if(color.equals("white")){
@@ -60,7 +61,7 @@ public class Player {
         
 
     }
-    //get each peice, 1 queen, 1 king, 8 pawns, 2 rooks, 2 bishops, 2 knights
+    
 
     
 }
